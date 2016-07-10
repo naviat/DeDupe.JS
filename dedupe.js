@@ -2,7 +2,14 @@ var dir = require('node-dir'); //npm install node-dir
 var fs = require('fs');
 var path = require('path')
 
-dir.files('Path\To\Files\', function(err, files) {
+
+//var pathf = '\\\\192.168.5.104\\PlexMedia\\TV Shows\\';
+var pathf = '/mnt/plex_media/tv';
+if ((process.env.USERNAME + '   ').substring(0,3) =='dab') {
+    pathf = 'TV Shows\\';
+}
+
+dir.files(pathf, function(err, files) {
     if (err) throw err;
     // sort ascending
     files.sort();
@@ -53,7 +60,7 @@ dir.files('Path\To\Files\', function(err, files) {
                 
                 fs.appendFileSync('logfile.txt', fls[i][j]['path'] + '\r\n');
 
-                fs.unlink(fls[i][j]['path']);
+                //fs.unlink(fls[i][j]['path']);
             }
         }
     }
